@@ -61,22 +61,6 @@ export default function HomePage() {
           <span className="text-purple-300 font-semibold">government</span> to
           accelerate the transition to clean energy.
         </motion.p>
-
-        {/* Call to Action Buttons */}
-        <div className="mt-8 flex gap-4 flex-wrap justify-center">
-          <Link
-            href="/explore"
-            className="rounded-full px-8 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-green-400/60"
-          >
-            Explore Platform
-          </Link>
-          <Link
-            href="/about"
-            className="rounded-full px-8 py-3 bg-white/10 text-white font-semibold backdrop-blur-md border border-white/30 transition-all duration-300 hover:scale-105 hover:bg-white/20"
-          >
-            Learn More
-          </Link>
-        </div>
       </div>
 
       {/* Extra Info Section */}
