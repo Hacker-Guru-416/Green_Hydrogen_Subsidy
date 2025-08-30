@@ -41,7 +41,7 @@ export default function LoginPage() {
   return (
     <div
       className="relative flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('https://i.imgur.com/GAbX16u.jpeg')" }}
+      style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1675824277375-0fa49c4c3e48?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JlZW4lMjBoeWRyb2dlbnxlbnwwfHwwfHx8MA%3D%3D')" }}
     >
       <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
 
