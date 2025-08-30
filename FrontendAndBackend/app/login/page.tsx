@@ -81,11 +81,9 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* --- CHANGE STARTS HERE --- */}
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
-            // Dynamically change text color: gray for placeholder, white for selected value
             className={`w-full appearance-none rounded-lg border border-transparent bg-white/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 ${
               role ? "text-white" : "text-gray-300"
             }`}
@@ -93,7 +91,6 @@ export default function LoginPage() {
             <option value="" disabled className="text-gray-500">
               Select Role
             </option>
-            {/* Add a dark text color to each option for readability */}
             <option value="government" className="text-black">
               Government
             </option>
@@ -107,7 +104,6 @@ export default function LoginPage() {
               Auditor
             </option>
           </select>
-          {/* --- CHANGE ENDS HERE --- */}
 
           <div>
             <button
@@ -118,22 +114,6 @@ export default function LoginPage() {
             </button>
           </div>
         </form>
-
-        {/* Forgot Links */}
-        <div className="flex items-center justify-between text-sm">
-          <a
-            href="#"
-            className="font-medium text-green-300 hover:text-green-200"
-          >
-            Forgot Username?
-          </a>
-          <a
-            href="#"
-            className="font-medium text-green-300 hover:text-green-200"
-          >
-            Forgot Password?
-          </a>
-        </div>
 
         {/* Signup Link */}
         <div className="mt-4 text-center text-sm text-gray-200">
