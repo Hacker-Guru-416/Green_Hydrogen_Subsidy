@@ -26,7 +26,7 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat"
-         style={{ backgroundImage: "url('https://media.istockphoto.com/id/1403750175/photo/hydrogen-energy-storage-gas-tank-for-clean-electricity-solar-and-wind-turbine-facility.jpg?s=612x612&w=0&k=20&c=cAkmTCAD3QA2IbUeVQuzxxE6D5UZPrX5dtnV6by5R9o=')" }}>
+         style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1675824277375-0fa49c4c3e48?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JlZW4lMjBoeWRyb2dlbnxlbnwwfHwwfHx8MA%3D%3D')" }}>
       
       <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
 

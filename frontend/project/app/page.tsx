@@ -18,7 +18,7 @@ export default function HomePage() {
             href="/signup"
             className="rounded-lg bg-green-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-green-600 hover:scale-105"
           >
-            Login / Sign Up
+            Sign Up / Log In
           </Link>
         </div>
       </header>
