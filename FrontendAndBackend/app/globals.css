@@ -5,6 +5,14 @@
   --foreground: #171717;
 }
 
+.widget-container {
+    @apply bg-black/40 p-6 rounded-2xl shadow-inner border border-green-800/50 h-full;
+}
+
+.widget-title {
+    @apply text-xl font-semibold mb-4 text-green-200;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

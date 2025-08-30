@@ -1,6 +1,10 @@
-"use client"; 
+// app/login/page.tsx
+"use client";
+
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
+// A simple leaf icon component
 const LeafIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -13,56 +17,54 @@ const LeafIcon = () => (
 );
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [role, setRole] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    try {
-      const res = await fetch("backend/project/app/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await res.json();
-      alert(data.message);
-
-      if (data.success) {
-        // Example: redirect to dashboard
-        window.location.href = `/dashboard?user=${username}`;
-      }
-    } catch (error) {
-      alert("Something went wrong!");
+    if (!username || !password || !role) {
+      alert("Please fill all fields and select a role!");
+      return;
     }
+
+    // Navigate to role-based dashboard
+    router.push(`/dashboard?role=${role}`);
   };
 
   return (
     <div
-      className="relative flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1675824277375-0fa49c4c3e48?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JlZW4lMjBoeWRyb2dlbnxlbnwwfHwwfHx8MA%3D%3D')" }}
+      className="relative flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage:
+          "url('https://www.imf.org/-/media/Images/IMF/FANDD/hero/2022/December/Hydrogen-Decade-van-de-Graaf.ashx')",
+      }}
     >
       <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
 
-      <div className="relative z-10 w-full max-w-md p-8 space-y-6 bg-white/10 backdrop-blur-lg rounded-xl shadow-2xl">
+      <div className="relative z-10 w-full max-w-md p-8 space-y-6 rounded-xl bg-white/10 backdrop-blur-lg shadow-2xl">
+        {/* Title */}
         <div className="text-center text-white">
           <h1 className="text-4xl font-bold tracking-tight">
-            <span className="text-green-300">Green</span> Hydrogen Gateway <LeafIcon />
+            <span className="text-green-300">Green</span> Hydrogen Gateway{" "}
+            <LeafIcon />
           </h1>
           <p className="mt-2 text-gray-200">Powering a sustainable future.</p>
         </div>
 
+        {/* Login Form */}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <input
               id="username"
               name="username"
               type="text"
-              required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-3 text-white bg-white/20 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 placeholder-gray-300"
+              required
+              className="w-full rounded-lg border border-transparent bg-white/20 px-4 py-3 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Username"
             />
           </div>
@@ -71,29 +73,76 @@ export default function LoginPage() {
               id="password"
               name="password"
               type="password"
-              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 text-white bg-white/20 border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 placeholder-gray-300"
+              required
+              className="w-full rounded-lg border border-transparent bg-white/20 px-4 py-3 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Password"
             />
           </div>
+
+          {/* --- CHANGE STARTS HERE --- */}
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            // Dynamically change text color: gray for placeholder, white for selected value
+            className={`w-full appearance-none rounded-lg border border-transparent bg-white/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 ${
+              role ? "text-white" : "text-gray-300"
+            }`}
+          >
+            <option value="" disabled className="text-gray-500">
+              Select Role
+            </option>
+            {/* Add a dark text color to each option for readability */}
+            <option value="government" className="text-black">
+              Government
+            </option>
+            <option value="startup" className="text-black">
+              Startup
+            </option>
+            <option value="bank" className="text-black">
+              Bank
+            </option>
+            <option value="auditor" className="text-black">
+              Auditor
+            </option>
+          </select>
+          {/* --- CHANGE ENDS HERE --- */}
+
           <div>
             <button
               type="submit"
-              className="w-full px-4 py-3 font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-green-400 transition-colors duration-300"
+              className="w-full rounded-lg bg-green-500 px-4 py-3 font-semibold text-white shadow-sm transition-colors duration-300 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-gray-900"
             >
               Login
             </button>
           </div>
         </form>
 
+        {/* Forgot Links */}
         <div className="flex items-center justify-between text-sm">
-          <a href="#" className="font-medium text-green-300 hover:text-green-200">
+          <a
+            href="#"
+            className="font-medium text-green-300 hover:text-green-200"
+          >
             Forgot Username?
           </a>
-          <a href="#" className="font-medium text-green-300 hover:text-green-200">
+          <a
+            href="#"
+            className="font-medium text-green-300 hover:text-green-200"
+          >
             Forgot Password?
+          </a>
+        </div>
+
+        {/* Signup Link */}
+        <div className="mt-4 text-center text-sm text-gray-200">
+          <span>Don’t have an account? </span>
+          <a
+            href="/signup"
+            className="font-medium text-green-300 hover:text-green-200"
+          >
+            Sign Up
           </a>
         </div>
       </div>

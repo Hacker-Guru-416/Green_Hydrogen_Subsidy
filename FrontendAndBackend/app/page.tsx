@@ -15,10 +15,10 @@ export default function HomePage() {
       <header className="relative z-10 p-4 md:p-6">
         <div className="container mx-auto flex justify-end">
           <Link
-            href="/signup"
+            href="/login"
             className="rounded-lg bg-green-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-green-600 hover:scale-105"
           >
-            Sign Up/ Log In
+            Login / Sign Up
           </Link>
         </div>
       </header>

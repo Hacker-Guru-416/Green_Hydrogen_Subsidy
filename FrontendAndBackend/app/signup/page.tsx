@@ -1,3 +1,5 @@
+// app/signup/page.tsx
+
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -18,39 +20,21 @@ export default function SignupPage() {
   const router = useRouter();
   const [role, setRole] = useState("");
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const fullName = formData.get("fullName") as string;
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const confirmPassword = formData.get("confirmPassword") as string;
-
-    try {
-      const res = await fetch("backend/project/app/api/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName, email, password, confirmPassword, role }),
-      });
-
-      const data = await res.json();
-      alert(data.message);
-
-      if (data.success) {
-        router.push(`/dashboard?role=${role}`);
-      }
-    } catch (error) {
-      alert("Something went wrong!");
+    // For now just simulate signup
+    if (role) {
+      alert(`Account created as ${role}!`);
+      router.push(`/dashboard?role=${role}`);
+    } else {
+      alert("Please select a role before signing up.");
     }
   };
 
   return (
     <div
       className="relative flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage:
-          "url('https://www.imf.org/-/media/Images/IMF/FANDD/hero/2022/December/Hydrogen-Decade-van-de-Graaf.ashx')",
-      }}
+      style={{ backgroundImage: "url('https://www.imf.org/-/media/Images/IMF/FANDD/hero/2022/December/Hydrogen-Decade-van-de-Graaf.ashx')" }}
     >
       <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
 
@@ -107,6 +91,7 @@ export default function SignupPage() {
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
+            // Dynamically change text color: gray for placeholder, white for selected value
             className={`w-full appearance-none rounded-lg border border-transparent bg-white/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400 ${
               role ? "text-white" : "text-gray-300"
             }`}
@@ -114,6 +99,7 @@ export default function SignupPage() {
             <option value="" disabled className="text-gray-500">
               Select Role
             </option>
+            {/* Add a dark text color to each option for readability */}
             <option value="government" className="text-black">
               Government
             </option>
